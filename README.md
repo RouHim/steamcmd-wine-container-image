@@ -6,6 +6,7 @@ This base container image provides steamcmd and the latest wine 64 bit as a secu
 
 ```Dockerfile
 FROM docker.io/rouhim/steamcmd-wine:latest
+USER $USER
 
 # Overwrite the following environment variables
 # STEAM_APP_ID: The Steam App ID of the game server to install
