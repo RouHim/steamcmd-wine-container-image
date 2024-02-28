@@ -15,14 +15,10 @@ ENV STEAM_APP_ID "xyz"
 ENV STARTUP_COMMAND "wine server.exe -configpath "$SERVER_CONFIG_DIR""
 
 # Optional pre.sh script to run before the server starts
-# Ensure that the script is executable
 COPY pre.sh /pre.sh
-RUN chmod +x /pre.sh
 
 # Optional post.sh script to run after the server starts
-# Ensure that the script is executable
 COPY post.sh /post.sh
-RUN chmod +x /post.sh
 ```
 
 ## Environment Variables

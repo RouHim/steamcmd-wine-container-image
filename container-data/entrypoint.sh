@@ -54,13 +54,12 @@ wineboot -r
 
 # Update server
 echo "🔄 Updating server..."
-$STEAMCMD +runscript "$USER_HOME"/steam-game.script
+$STEAMCMD +runscript "$USER_HOME/steam-game.script"
 
-# Check if /pre.sh exists and execute it
-if [ -f /pre.sh ]; then
+# Check if pre.sh exists and execute it
+if [ -f "$USER_HOME/pre.sh" ]; then
     echo "🔧 Executing pre.sh..."
-    chmod +x /pre.sh
-    eval /pre.sh
+    bash "$USER_HOME/pre.sh"
 fi
 
 # Start server and hold the process
@@ -68,9 +67,8 @@ echo "🎮 Starting server..."
 cd "$SERVER_DIR" || exit
 eval "$STARTUP_COMMAND"
 
-# Check if /post.sh exists and execute it
-if [ -f /post.sh ]; then
+# Check if post.sh exists and execute it
+if [ -f "$USER_HOME/post.sh" ]; then
     echo "🔧 Executing post.sh..."
-    chmod +x /post.sh
-    eval /post.sh
+    bash USER_HOME/post.sh$
 fi
