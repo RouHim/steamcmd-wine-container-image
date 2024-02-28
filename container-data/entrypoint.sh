@@ -56,11 +56,21 @@ wineboot -r
 echo "🔄 Updating server..."
 $STEAMCMD +runscript "$USER_HOME"/steam-game.script
 
-# TODO: Add support for other commands to be executed before starting the server
+# Check if /pre.sh exists and execute it
+if [ -f /pre.sh ]; then
+    echo "🔧 Executing pre.sh..."
+    chmod +x /pre.sh
+    eval /pre.sh
+fi
 
 # Start server and hold the process
 echo "🎮 Starting server..."
 cd "$SERVER_DIR" || exit
 eval "$STARTUP_COMMAND"
 
-# TODO Add support for other commands to be executed after shutting down the server
+# Check if /post.sh exists and execute it
+if [ -f /post.sh ]; then
+    echo "🔧 Executing post.sh..."
+    chmod +x /post.sh
+    eval /post.sh
+fi

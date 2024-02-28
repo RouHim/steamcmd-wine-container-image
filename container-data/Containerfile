@@ -1,7 +1,9 @@
 FROM ubuntu:devel
 
 # Define environment variables
-ENV USER_HOME "/home/nobody"
+ENV USER "ubuntu"
+ENV GROUP "ubuntu"
+ENV USER_HOME "/home/$USER"
 ENV STEAMCMD "$USER_HOME/steamcmd/steamcmd.sh"
 ENV SERVER_DIR "/data"
 ENV SERVER_CONFIG_DIR "/config"
@@ -24,7 +26,7 @@ RUN apt update && \
 RUN apt install -y lib32gcc-s1 && \
     mkdir -p $USER_HOME/steamcmd && \
     wget -qO- 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar zxf - -C $USER_HOME/steamcmd && \
-    chown -R nobody:nogroup $USER_HOME/steamcmd
+    chown -R $USER:$GROUP $USER_HOME/steamcmd
 
 # Cleanup, remove wget
 RUN apt purge -y wget && \
@@ -40,10 +42,10 @@ VOLUME $SERVER_CONFIG_DIR
 COPY steam-game.script $USER_HOME/steam-game.script
 
 # Change user to non-root user
-RUN chown -R nobody:nogroup $USER_HOME && \
-    chown -R nobody:nogroup $SERVER_DIR $SERVER_CONFIG_DIR && \
+RUN chown -R $USER:$GROUP $USER_HOME && \
+    chown -R $USER:$GROUP $SERVER_DIR $SERVER_CONFIG_DIR && \
     chmod 777 -R $SERVER_DIR $SERVER_CONFIG_DIR
-USER nobody
+USER $USER
 
 # Game port
 EXPOSE 8766/udp
@@ -53,5 +55,5 @@ EXPOSE 27016/udp
 EXPOSE 9700/udp
 
 # Define entrypoint
-COPY --chown=nobody:nogroup --chmod=755 entrypoint.sh /sons-of-the-forest-server.sh
+COPY --chown=$USER:$GROUP --chmod=755 entrypoint.sh /sons-of-the-forest-server.sh
 ENTRYPOINT ["/sons-of-the-forest-server.sh"]
