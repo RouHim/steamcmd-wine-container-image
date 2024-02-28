@@ -24,3 +24,14 @@ RUN chmod +x /pre.sh
 COPY post.sh /post.sh
 RUN chmod +x /post.sh
 ```
+
+## Environment Variables
+
+The following environment variables are available:
+
+* `USER` `"ubuntu"`
+* `GROUP` `"ubuntu"`
+* `USER_HOME` `"/home/$USER"`
+* `STEAMCMD` `"$USER_HOME/steamcmd/steamcmd.sh"`
+* `SERVER_DIR` `"/data"`
+* `SERVER_CONFIG_DIR` `"/config"`
