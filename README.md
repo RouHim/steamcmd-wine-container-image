@@ -1,6 +1,6 @@
 # steamcmd-wine-container-image
 
-This base container image provides steamcmd and the latest wine as a secure container image
+This base container image provides steamcmd and the latest wine 64 bit as a secure container image.
 
 ## How to use as a base image
 
