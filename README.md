@@ -30,8 +30,6 @@ If you want to install additional packages via apt,
 make sure to become `USER root` before executing apt commands.
 Obviously, you should also switch back to `USER $USER` after installing the packages.
 
-```Dockerfile
-
 ## Environment Variables
 
 The following environment variables are available in the base image:
