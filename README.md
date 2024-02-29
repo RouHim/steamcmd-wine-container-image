@@ -34,11 +34,11 @@ Obviously, you should also switch back to `USER $USER` after installing the pack
 
 The following environment variables are available in the base image:
 
-| Variable            | Default Value                       | Description                                                   |
-|---------------------|-------------------------------------|---------------------------------------------------------------|
-| `USER`              | `"ubuntu"`                          | The user to run the server as                                 |
-| `GROUP`             | `"ubuntu"`                          | The group to run the server as                                |
-| `USER_HOME`         | `"/home/$USER"`                     | The home directory of the user                                |
-| `STEAMCMD`          | `"$USER_HOME/steamcmd/steamcmd.sh"` | The path to the steamcmd executable                           |
-| `SERVER_DIR`        | `"/data"`                           | The directory where the server files are stored               |
-| `SERVER_CONFIG_DIR` | `"/config"`                         | The directory where the server configuration files are stored |
+| Variable            | Default Value                     | Description                                                   |
+|---------------------|-----------------------------------|---------------------------------------------------------------|
+| `USER`              | `ubuntu`                          | The user to run the server as                                 |
+| `GROUP`             | `ubuntu`                          | The group to run the server as                                |
+| `USER_HOME`         | `/home/$USER`                     | The home directory of the user                                |
+| `STEAMCMD`          | `$USER_HOME/steamcmd/steamcmd.sh` | The path to the steamcmd executable                           |
+| `SERVER_DIR`        | `/data`                           | The directory where the server files are stored               |
+| `SERVER_CONFIG_DIR` | `/config`                         | The directory where the server configuration files are stored |
