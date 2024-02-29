@@ -2,15 +2,19 @@
 
 This base container image provides steamcmd and the latest wine 64 bit as a secure container image.
 
-## How to use as a base image
+![Ubuntu Package Version (for series)](https://img.shields.io/ubuntu/v/wine/devel?label=wine&link=https%3A%2F%2Fpackages.ubuntu.com%2Fsearch%3Fkeywords%3Dwine%26searchon%3Dnames%26suite%3Dall%26section%3Dall)
+
+## How to use
 
 ```Dockerfile
 FROM docker.io/rouhim/steamcmd-wine:latest
 USER $USER
 
-# Overwrite the following environment variables
+# Set the following environment variables: STEAM_APP_ID, STARTUP_COMMAND
+
 # STEAM_APP_ID: The Steam App ID of the game server to install
 ENV STEAM_APP_ID "xyz"
+
 # STARTUP_COMMAND:  The command to run to start the server, 
 #                   the current working directory is the server directory ($SERVER_DIR)
 ENV STARTUP_COMMAND "wine server.exe -configpath "$SERVER_CONFIG_DIR""
@@ -22,13 +26,21 @@ COPY pre.sh $USER_HOME/pre.sh
 COPY post.sh $USER_HOME/post.sh
 ```
 
+If you want to install additional packages via apt,
+make sure to become `USER root` before executing apt commands.
+Obviously, you should also switch back to `USER $USER` after installing the packages.
+
+```Dockerfile
+
 ## Environment Variables
 
-The following environment variables are available:
+The following environment variables are available in the base image:
 
-* `USER` `"ubuntu"`
-* `GROUP` `"ubuntu"`
-* `USER_HOME` `"/home/$USER"`
-* `STEAMCMD` `"$USER_HOME/steamcmd/steamcmd.sh"`
-* `SERVER_DIR` `"/data"`
-* `SERVER_CONFIG_DIR` `"/config"`
+| Variable            | Default Value                       | Description                                                   |
+|---------------------|-------------------------------------|---------------------------------------------------------------|
+| `USER`              | `"ubuntu"`                          | The user to run the server as                                 |
+| `GROUP`             | `"ubuntu"`                          | The group to run the server as                                |
+| `USER_HOME`         | `"/home/$USER"`                     | The home directory of the user                                |
+| `STEAMCMD`          | `"$USER_HOME/steamcmd/steamcmd.sh"` | The path to the steamcmd executable                           |
+| `SERVER_DIR`        | `"/data"`                           | The directory where the server files are stored               |
+| `SERVER_CONFIG_DIR` | `"/config"`                         | The directory where the server configuration files are stored |
