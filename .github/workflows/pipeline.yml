@@ -8,8 +8,7 @@ on:
     types:
       - opened
   schedule:
-    - cron: "0 0 * * 0" # weekly at sunday night
-
+    - cron: '0 0 * * 6' # weekly at saturday night
 
 # Avoid running this workflow multiple times at the same branch
 concurrency:
