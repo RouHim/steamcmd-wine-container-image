@@ -25,7 +25,7 @@ ENV STARTUP_COMMAND "wine server.exe -configpath "$SERVER_CONFIG_DIR""
 # Optional pre.sh script to run before the server starts
 COPY pre.sh $USER_HOME/pre.sh
 
-# Optional post.sh script to run after the server starts
+# Optional post.sh script to run after the server stops
 COPY post.sh $USER_HOME/post.sh
 ```
 
