@@ -16,7 +16,7 @@ USER $USER
 # Set the following environment variables: STEAM_APP_ID, STARTUP_COMMAND
 
 # STEAM_APP_ID: The Steam App ID of the game server to install
-ENV STEAM_APP_ID "xyz"
+ENV STEAM_APP_ID "123456789"
 
 # STARTUP_COMMAND:  The command to run to start the server, 
 #                   the current working directory is the server directory ($SERVER_DIR)
