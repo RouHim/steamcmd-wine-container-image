@@ -1,7 +1,7 @@
 # steamcmd-wine-container-image
 
 This base container image provides everything you need to run a windows based dedicated server which is to be installed
-via SteamCMD. It's based on the latest packages provided by `ubuntu:devel`.
+via SteamCMD. It's based on the latest packages provided by `ubuntu:devel` and is built weekly.
 
 ![Docker Image Version](https://img.shields.io/docker/v/_/ubuntu?label=ubuntu)
 
