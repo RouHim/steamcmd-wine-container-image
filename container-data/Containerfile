@@ -40,6 +40,7 @@ VOLUME $SERVER_CONFIG_DIR
 
 # Copy steam-game.script to container
 COPY steam-game.script $USER_HOME/steam-game.script
+COPY steam-game-fast.script $USER_HOME/steam-game-fast.script
 
 # Change user to non-root user
 RUN chown -R $USER:$GROUP $USER_HOME && \

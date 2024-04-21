@@ -42,8 +42,9 @@ if [ -z "$STEAM_APP_ID" ]; then
     exit 1
 fi
 
-# Replace %STEAM_APP_ID% in steam-game.script
+# Replace %STEAM_APP_ID% in steam game scripts
 sed -i "s/%STEAM_APP_ID%/$STEAM_APP_ID/g" "$USER_HOME"/steam-game.script
+sed -i "s/%STEAM_APP_ID%/$STEAM_APP_ID/g" "$USER_HOME"/steam-game-fast.script
 
 # Start virtual X server
 echo "🖥️ Starting virtual display..."
@@ -52,9 +53,15 @@ rm -rf /tmp/.X* 2> /dev/null
 Xvfb :99 -screen 0 1024x768x16 -nolisten tcp -nolisten unix &
 wineboot -r
 
-# Update server
-echo "🔄 Updating server..."
-$STEAMCMD +runscript "$USER_HOME/steam-game.script"
+# Install / Update / Validate server
+# If FAST_BOOT == true use steam-game-fast.script otherwise use steam-game.script
+if [ "$FAST_BOOT" == "true" ]; then
+  echo "🔄 Starting server (fast)..."
+  $STEAMCMD +runscript "$USER_HOME/steam-game-fast.script"
+else
+  echo "🔄 Installing / Updating / Validating server..."
+  $STEAMCMD +runscript "$USER_HOME/steam-game.script"
+fi
 
 # Check if pre.sh exists and execute it
 if [ -f "$USER_HOME/pre.sh" ]; then

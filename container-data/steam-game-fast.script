@@ -1,0 +1,7 @@
+@ShutdownOnFailedCommand 1
+@NoPromptForPassword 1
+@sSteamCmdForcePlatformType windows
+force_install_dir /data
+login anonymous
+%STEAM_APP_ID%
+quit
