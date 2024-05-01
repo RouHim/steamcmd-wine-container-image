@@ -48,13 +48,6 @@ RUN chown -R $USER:$GROUP $USER_HOME && \
     chmod 777 -R $SERVER_DIR $SERVER_CONFIG_DIR
 USER $USER
 
-# Game port
-EXPOSE 8766/udp
-# Query port
-EXPOSE 27016/udp
-# Blobsync port
-EXPOSE 9700/udp
-
 # Define entrypoint
 COPY --chown=$USER:$GROUP --chmod=755 entrypoint.sh /server-entrypoint.sh
 ENTRYPOINT ["/server-entrypoint.sh"]
