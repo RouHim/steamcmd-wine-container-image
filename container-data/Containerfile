@@ -28,8 +28,10 @@ RUN apt install -y lib32gcc-s1 && \
     wget -qO- 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar zxf - -C $USER_HOME/steamcmd && \
     chown -R $USER:$GROUP $USER_HOME/steamcmd
 
-# Cleanup, remove wget
+# Cleanup, remove wget and pebble (shipped by the ubuntu base image, unused here,
+# but its embedded gobinary fails the Trivy HIGH severity gate)
 RUN apt purge -y wget && \
+    rm -f /usr/bin/pebble && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 
